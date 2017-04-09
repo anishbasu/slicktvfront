@@ -1,0 +1,13 @@
+.category{
+	padding: 10px 5px 10px 30px;
+}
+
+.category:hover {
+    background-color: #DDD;
+    color: black;
+}
+
+.selected {
+	background-color: #444;
+	color: #DDD;
+}

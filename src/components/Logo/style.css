@@ -1,0 +1,12 @@
+.logo{
+ color: white;
+ font-size: 24pt
+}
+
+.logo>span {
+    color: #4D9FFF;
+}
+
+.logoLink{
+	text-decoration: none;
+}

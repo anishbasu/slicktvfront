@@ -1,0 +1,28 @@
+.control {
+    color: #DDD;
+    padding: 20px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.control:hover {
+    color: #222;
+    background-color: #DDD;
+    padding: 20px;
+}
+
+.control > div > h3 {
+    margin: 0;
+}
+
+.control > div {
+    margin: 0;
+}
+
+.starts-in{
+    font-size: 12px;
+    margin-left: 5px;
+    color: #AAA;
+}

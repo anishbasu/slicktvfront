@@ -1,0 +1,13 @@
+.player{
+	color: white;
+}
+
+.player .channelPage{
+	display: flex;
+}
+
+.player .playerPane {
+	width: 100vw;
+	height: 80vh;
+	border: 5px solid blue;
+}

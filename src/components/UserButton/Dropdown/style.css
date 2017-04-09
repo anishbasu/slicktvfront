@@ -1,0 +1,25 @@
+.dropdown>li {
+    color: black;
+    padding: 12px 16px;
+    display: block;
+    padding: inherit 5px inherit 5px;
+}
+.dropdown>li:hover{
+    background-color: #999;
+}
+.dropdown>li>a{
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown{
+    display: none;
+    position: absolute;
+    background-color: #DDD;
+    z-index: 1;
+    list-style: none;
+    padding: 10px 0 10px 0;
+    margin: 0;
+    border-radius: 5px;
+}
+

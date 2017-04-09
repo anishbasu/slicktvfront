@@ -1,0 +1,29 @@
+.login-panel{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 25%;
+    justify-content: space-around;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.login-panel>h2{
+    color: white;
+    margin: 0;
+}
+
+.login-panel .submit-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-panel .submit-div a {
+    color: white;
+    flex-grow: 0.5;
+}
+
+.login-panel .submit-div button {
+    flex-grow: 0.5;
+}

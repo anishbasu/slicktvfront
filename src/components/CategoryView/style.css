@@ -1,0 +1,10 @@
+.category-view {
+    display: flex;
+    color: white;
+    height: 40vh;
+}
+
+.channels-view>h3{
+    margin: 0;
+    font-weight: 400;
+}

@@ -1,0 +1,22 @@
+.banner{
+    display: flex;
+    height: 40vh;
+}
+
+.slide{
+    width: 70%;
+    background-color: #00A375;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls{
+    background-color: #2C2C2C;
+    width: 30%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-y: scroll;
+}
+

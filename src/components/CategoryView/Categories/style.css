@@ -1,0 +1,9 @@
+.categories {
+    width: 30%;
+    height: 100%;
+    list-style: none;
+    font-size: 20px;
+    border-left: 2px solid #DDD;
+    padding: 0;
+    overflow-y: scroll;
+}
