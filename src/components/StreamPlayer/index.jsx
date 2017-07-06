@@ -3,12 +3,15 @@ import HLS from 'hls.js'
 import classnames from 'classnames'
 import './style.css'
 
+import fullscreenIcon from './full-screen-icon.png'
+
 class StreamPlayer extends React.Component {
     constructor (props) {
         super(props)
 
         this.state = {
-            playerID: Date.now()
+            playerID: Date.now(),
+            videoLoaded: false
         }
 
         //this.handleError = this.handleError.bind(this)
@@ -21,6 +24,12 @@ class StreamPlayer extends React.Component {
 
     componentDidMount = () => {
         this._initPlayer()
+    }
+
+    componentWillUnmount = () => {
+        if (this.hlsDecoder) {
+            this.hlsDecoder.destroy()
+        }
     }
 
     _initPlayer = () => {
@@ -36,44 +45,67 @@ class StreamPlayer extends React.Component {
         hlsDecoder.loadSource(url)
         hlsDecoder.attachMedia(playerElem)
 
-        hlsDecoder.on(HLS.Events.MANIFEST_PARSED, () => {
-            if (autoplay) {
-                playerElem.play()
-            }
-        })
-
         hlsDecoder.on(HLS.Events.ERROR, (event, data) => {
             let {type: errorType, fatal: errorFatal, details: errorDetail} = data
             console.log(`${errorType} Details: ${errorDetail} Fatal? ${errorFatal}`)
+        })
+
+        hlsDecoder.on(HLS.Events.FRAG_PARSED, (event, data) => {
+            if(!this.state.videoLoaded){
+                this.setState((prevState) => ({...prevState, videoLoaded: true}))
+                playerElem.play()
+            }
         })
 
         this.hlsDecoder = hlsDecoder
     }
 
     toggleFullScreen = (elem) => {
-        if (!document.mozFullScreen && !document.webkitFullScreen) {
-          if (elem.mozRequestFullScreen) {
-            elem.mozRequestFullScreen();
-          } else {
-            elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-          }
+        elem.requestFullScreen =
+            elem.requestFullscreen
+            || elem.msRequestFullscreen
+            || elem.mozRequestFullScreen
+            || elem.webkitRequestFullscreen;
+        document.exitFullscreen =
+            document.exitFullscreen
+            || document.msExitFullscreen
+            || document.mozCancelFullScreen
+            || document.webkitExitFullscreen;
+        const fullscreenElement =
+            document.fullscreenElement
+            || document.msFullscreenElement
+            || document.mozFullScreenElement
+            || document.webkitFullscreenElement;
+        if (fullscreenElement === elem) {
+            document.exitFullscreen();
         } else {
-          if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-          } else {
-            document.webkitCancelFullScreen();
-          }
+            elem.requestFullScreen();
         }
     }
 
+    isStreamLoaded = () => {
+        if(this.state.videoLoaded)
+            return "Live Broadcast"
+        else
+            return "Loading..."
+    }
     render = () => (
-        <div key={this.state.playerID} className="stream-player">
+        <div key={this.state.playerID} className="stream-player" ref="playercomp">
             <video ref="player"
                    className={classnames("stream-player--video")}
                    id={`stream-player-${this.state.playerID}`}
                    controls={this.props.controls}
-                   onDoubleClick={event => this.toggleFullScreen(event.target) }></video>
-            <div className="stream-player--controls"></div>
+                   onDoubleClick={event => this.toggleFullScreen(this.refs.playercomp) }></video>
+            <div className="stream-player--controls">
+                <div className="video-controls--left">
+                    {this.isStreamLoaded()}
+                </div>
+                <div className="video-controls--right">
+                    <a onClick={event => this.toggleFullScreen(this.refs.playercomp)}>
+                        <img src={fullscreenIcon} width="20px"/>
+                    </a>
+                </div>
+            </div>
         </div>
     )
 }

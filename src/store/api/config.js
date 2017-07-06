@@ -4,9 +4,10 @@ export default {
         login : `login`,
         userActions:  `user`,
         categoryList: `categories`,
-        userDetails: (user_name) => `${this.paths.userActions}/${user_name}`,
+        userDetails: (user_name) => `user/${user_name}`,
         channelsByCategory: (category) => `category/${category}`,
         channelDetails: (channel_name) => `channel/${channel_name}`,
-        channelStream: (channel_name) => `channel/${channel_name}/stream`
+        channelStream: (channel_name) => `channel/${channel_name}/stream`,
+        events: `events/`
     }
 }

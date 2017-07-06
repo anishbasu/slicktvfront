@@ -1,9 +1,8 @@
 .stream-player{
     width: 100vw;
     height: 80vh;
-    display: flex;
-    justify-content: stretch;
-    align-items: stretch;
+    display: relative;
+    background-color: inherit;
 }
 
 .stream-player--video{
@@ -11,6 +10,29 @@
     height: 100%;
 }
 
-.stream-player--video_show{
-    display: block;
+.stream-player--controls{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0,0,0,0.7);
+    opacity: 0;
+    transition: opacity 0.2s;
+    margin: 10px;
+}
+
+.stream-player:hover .stream-player--controls{
+    opacity: 1;
+}
+
+.video-controls--left{
+    margin-left: 20px;
+}
+
+.video-controls--right{
+    margin-right: 20px;
 }

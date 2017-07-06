@@ -1,4 +1,4 @@
-import {LOGIN_SUCCESS, LOGIN_FAILED, LOGIN_REQUEST, LOGOUT} from '../constants'
+import {LOGIN_SUCCESS, LOGIN_FAILED, LOGIN_REQUEST, LOGOUT, USER_DETAILS_RECEIVED} from '../constants'
 import InitialState from '../initial'
 
 export default (state = InitialState.user, action) => {
@@ -23,6 +23,14 @@ export default (state = InitialState.user, action) => {
             return {
                 ...state,
                 action: action.type
+            }
+        case USER_DETAILS_RECEIVED:
+            return {
+                ...state,
+                action: action.type,
+                image: action.image,
+                actions: action.actions,
+                email: action.email
             }
         case LOGOUT:
             return InitialState.user

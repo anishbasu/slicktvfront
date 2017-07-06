@@ -1,5 +1,5 @@
-import {LOGIN_REQUEST, CATEGORY_LIST, CATEGORY_CHANNEL_LIST, CHANNEL_STREAM_REQUEST} from '../constants'
-import {loginSaga, getCategories, getChannelsByCategory, getChannelStream} from './workers'
+import {LOGIN_REQUEST, CATEGORY_LIST, CATEGORY_CHANNEL_LIST, CHANNEL_STREAM_REQUEST, USER_DETAILS_REQUEST, EVENTS_REQUEST} from '../constants'
+import {loginSaga, getCategories, getChannelsByCategory, getChannelStream, userDetailsSaga, eventsWorker} from './workers'
 import { takeLatest } from 'redux-saga/effects';
 
 export function* login() {
@@ -16,4 +16,12 @@ export function* categoryChannels(){
 
 export function* channelStream(){
     yield takeLatest(CHANNEL_STREAM_REQUEST, getChannelStream);
+}
+
+export function* userDetails(){
+    yield takeLatest(USER_DETAILS_REQUEST, userDetailsSaga);
+}
+
+export function* events(){
+    yield takeLatest(EVENTS_REQUEST, eventsWorker);
 }

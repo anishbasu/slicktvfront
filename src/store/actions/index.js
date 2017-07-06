@@ -49,3 +49,16 @@ export const streamReceived = (stream_uri) => ({
     type: constants.CHANNEL_STREAM_RECEIVED,
     stream_uri
 })
+
+export const userDetailsRequest = (user_name) => ({
+    type: constants.USER_DETAILS_REQUEST,
+    user_name
+})
+
+export const userDetailsReceived = ({user_name, image, actions, email}) => ({
+    type: constants.USER_DETAILS_RECEIVED,
+    user_name,
+    image,
+    actions,
+    email
+})

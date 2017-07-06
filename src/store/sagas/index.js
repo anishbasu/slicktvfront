@@ -5,6 +5,8 @@ export default function* startWatchers() {
         fork(watch.login),
         fork(watch.categoryList),
         fork(watch.categoryChannels),
-        fork(watch.channelStream)
+        fork(watch.channelStream),
+        fork(watch.userDetails),
+        fork(watch.events)
     ]
 }

@@ -6,8 +6,8 @@ html{
 }
 
 body{
-    font-family: AvenirNext sans-serif;
-    background-color: black;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #0C090D;
     height: 100vh;
     width: 98vw;
     margin: 0 1vw 0 1vw;

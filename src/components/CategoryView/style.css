@@ -1,7 +1,8 @@
 .category-view {
     display: flex;
-    color: white;
+    color: #CCC7B9;
     height: 40vh;
+    max-height: 40vh;
 }
 
 .channels-view>h3{

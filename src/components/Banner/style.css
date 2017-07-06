@@ -5,14 +5,14 @@
 
 .slide{
     width: 70%;
-    background-color: #00A375;
+    background-color: #FFC300;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .controls{
-    background-color: #2C2C2C;
+    background-color: #232020;
     width: 30%;
     margin: 0;
     padding: 0;

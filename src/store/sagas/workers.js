@@ -9,6 +9,7 @@ export function* loginSaga({username,password}) {
         if(resp.auth_token){
             console.log("User logged in")
             yield put(actions.loginSuccess(username, resp.auth_token))
+            yield put(actions.userDetailsRequest(username))
         } else {
             console.log("Login Unsuccessful")
             yield put(actions.loginFailed()) 
@@ -72,15 +73,35 @@ export function* getChannelStream ({channel_name}) {
         console.log(error)
     }
 }
-/*
-function* userDetailsSaga({username}) => {
+
+export function* userDetailsSaga({user_name}) {
     try {
-        let user = yield select((state) => state.user)
+        let token = yield select((state) => state.user.auth_token)
         console.log("Getting User Details")
-        const resp = yield call(api.userDetails(user.auth_token, username))
+        const resp = yield call(api.userDetails, token, user_name)
         if(resp.user_id){
             console.log("User details received")
+            yield put(actions.userDetailsReceived(resp))
+        } else {
+            console.log("User detail retrieve error") //TODO Error Handling
         }
+    } catch (error) {
+        console.log(error)
     }
 }
-*/
+
+export function* eventsWorker () {
+    try{
+        console.log("Getting events")
+        let token = yield select((state) => state.user.auth_token)
+        const resp = yield call(api.events, token)
+        if(resp.events){
+            console.log("Events Received")
+            yield put(actions.res_events(resp.events))
+        } else {
+            console.log("Events Receive Error") //TODO Error Handling
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}

@@ -1,7 +1,8 @@
 import React from 'react';
 import Banner from '../../components/Banner';
 import CategoryView from '../../components/CategoryView';
-import {loginRequest, categoryListRequest} from '../../store/actions';
+import {categoryListRequest} from '../../store/actions';
+
 import { connect } from 'react-redux';
 
 const data = [

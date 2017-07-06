@@ -1,4 +1,4 @@
-import fetch, {Headers} from 'isomorphic-fetch'
+import fetch from 'isomorphic-fetch'
 import api from './config'
 
 const makeHeaders = (authToken, otherHeaders = {}) => ({
@@ -7,14 +7,24 @@ const makeHeaders = (authToken, otherHeaders = {}) => ({
     "X-Auth-Token": authToken
 })
 
+export const register = (username, password, email) => {
+    return fetch(
+        api.makePath(api.paths.userActions),
+        {
+            method: "PUT",
+            body: JSON.stringify(
+                    {username, password, email}
+                ),
+            headers: {"Content-Type": "application/json"}
+        }).then(response => response.json(), error => console.log(error))
+}
+
 export const login = (username, password) => {
-    return fetch
-        (
+    return fetch(
             api.makePath(api.paths.login),
             {
                 method: "POST",
-                body: JSON.stringify
-                    (
+                body: JSON.stringify(
                         {username, password}
                     ),
                 headers: { "Content-Type": "application/json" }
@@ -63,6 +73,15 @@ export const channelDetails = (auth, channel_name) => {
 export const channelStream = (auth, channel_name) => {
     return fetch(
             api.makePath(api.paths.channelStream(channel_name)),
+            {
+                headers: makeHeaders(auth)
+            })
+        .then(response => response.json(), error => console.log(error))
+}
+
+export const events = (auth) => {
+    return fetch(
+            api.makePath(api.paths.events()),
             {
                 headers: makeHeaders(auth)
             })
